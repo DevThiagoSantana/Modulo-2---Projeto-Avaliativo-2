@@ -1,0 +1,28 @@
+{
+  "name": "lab-school-server",
+  "version": "1.0.0",
+  "description": "Servidor de testes do projeto LAB School",
+  "main": "server.js",
+  "scripts": {
+    "dev": "json-server-auth data/db.json -r routes.json --port 8081"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:Devin-ilog/m02-p02-server.git"
+  },
+  "keywords": [
+    "lab-school",
+    "json-server"
+  ],
+  "author": "DevInHouse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Devin-ilog/m02-p02-server/issues"
+  },
+  "homepage": "https://github.com/Devin-ilog/m02-p02-server#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "json-server": "^0.17.3",
+    "json-server-auth": "^2.1.0"
+  }
+}
