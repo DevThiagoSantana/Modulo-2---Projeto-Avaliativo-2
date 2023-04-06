@@ -1,0 +1,22 @@
+.navbarContainer {
+  height: 70px;
+  padding: 0 var(--spacing-7);
+  background-color: var(--light-gray);
+  display: flex;
+  justify-content: space-between;  
+  align-items: center;
+  background-color: gray;
+
+}
+
+.navbarContainer h1 {
+  font-size: 36px;  
+  line-height: 44px;
+  color: var(--primary);
+}
+.navbarLogoBox {
+  display: flex;
+  height: 40px;
+  gap: var(--spacing-4);
+  text-decoration: none;
+}
