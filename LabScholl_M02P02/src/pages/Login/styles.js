@@ -18,7 +18,7 @@ export const LoginCenterBox = styled.div`
   gap: var(--spacing-6);
   width: 454px;
   max-width: 100%;
-  background: #e5e5e5;
+  background: #A5D7E8;
   box-shadow: 0 var(--spacing-4) var(--spacing-3) rgba(0, 0, 0, 0.25);
   border-radius: var(--border-radius-2);
 `
