@@ -1,29 +1,37 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Button, { BUTTON_VARIANT } from '../Button'
+import useAuthenticationContext from '../../hooks/UseAuthentication/useAuthentication'
 import './Navbar.css'
+import { useState } from 'react'
 
 function Navbar() {
   const location = useLocation()
-  const navigate = useNavigate()
+  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(false)
+  // const navigate = useNavigate()
+  const { logout } = useAuthenticationContext()
 
 
  const handleLogout = () => {
-    handleNavigateLogin('/login')
+    setLoading(true)
+    logout()
+    setLoading(false)
   }
 
   return (
     <header className="navbarContainer">
-      <Link to="/" className="navbarLogoBox">
+      {location.pathname !== '/login' && location.pathname !== '/register' && (
+        <>     <Link to="/" className="navbarLogoBox">
         <img src="/logo.svg" alt="Logo" />
         <h1>LabSchool</h1>
       </Link>
-      {location.pathname !== '/login' && (
         <Button
           variant={BUTTON_VARIANT.PRIMARY_OUTLINED}
           onClick={handleLogout}
         >
            Sair
         </Button>
+      </>
       )}
     </header>
   )

@@ -5,6 +5,7 @@ import InputGroup from '../../components/InputGroup'
 import Button from '../../components/Button'
 import PageWrapper from '../../components/PageWrapper/PageWrapper'
 
+
 import { apiService } from '../../services/api'
 import {
   LoginCenterBox,
@@ -17,7 +18,7 @@ import useAuthenticationContext from '../../hooks/UseAuthentication/useAuthentic
 
 function Login() {
   const navigate = useNavigate()
-  const setUseUser = useUser()
+  // const setUseUser = useUser()
 
   const [email, setEmail] = useState('')
   const [showEmailHelper, setShowEmailHelper] = useState(false)
@@ -39,7 +40,8 @@ function Login() {
   }
   const { login } = useAuthenticationContext()
 
-  const handleLoginAction = async () => {
+  const handleLoginAction = async (event) => {
+    event.preventDefault()
     setError(null)
     setShowEmailHelper(!email)
     setShowPasswordHelper(!password)
@@ -47,20 +49,17 @@ function Login() {
       return
     }
     setLoading(true)
-    const response = await apiService.get(
-      `/users?email=${email}&password=${password}`
-    )
-    if (response?.data?.length) {
-      const { name, isAdmin } = response.data[0]
-      setUseUser({
-        name,
-        isAdmin
-      })
-      navigate('/')
-    } else {
-      setUseUser()
-      setError('Credenciais inválidas!')
-    }
+    login(email, password)
+    // const response = await apiService.get(
+    //   `/users?email=${email}&password=${password}`
+    // )
+
+    // if (response?.data?.length) {
+    //   navigate('/home')
+    // } else {
+    //   setUseUser()
+    //   setError('Credenciais inválidas!')
+    // }
 
     setLoading(false)
   }

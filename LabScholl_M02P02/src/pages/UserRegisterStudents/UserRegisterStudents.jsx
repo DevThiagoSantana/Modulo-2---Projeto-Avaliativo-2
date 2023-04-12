@@ -25,7 +25,7 @@ const schema = yup.object().shape({
   cpf: yup.string().required('Campo obrigatório')
 })
 
-function UserRegister() {
+function UserRegisterStudents() {
   const navigate = useNavigate()
 
   const {
@@ -55,7 +55,7 @@ function UserRegister() {
       <RegisterPageSection>
         <Card>
           <RegisterPageSectionCard>
-            <h1 className="register-page-section-title">Cadastrar Pedagogico</h1>
+            <h1 className="register-page-section-title">Cadastrar Aluno</h1>
 
             <form
               className="register-page-section-form"
@@ -134,4 +134,4 @@ function UserRegister() {
   )
 }
 
-export default UserRegister
+export default UserRegisterStudents

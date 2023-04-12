@@ -8,6 +8,16 @@
       "birthdate": "01/01/1990",
       "cpf": "999.999.999-99",
       "id": 2
+    },
+    {
+      "email": "thiago_claw@hotmail.com",
+      "password": "$2a$10$f6hCWQD8.M4Hp8w.STmI4unog7lpaYjzNwaaXTDyHtw5W8xLMZTzG",
+      "cpf": "05007832502",
+      "birthDate": "01021990",
+      "phone": 7199999999999,
+      "name": "thiago",
+      "repassword": "Gomesdias10",
+      "id": 3
     }
   ],
   "students": [

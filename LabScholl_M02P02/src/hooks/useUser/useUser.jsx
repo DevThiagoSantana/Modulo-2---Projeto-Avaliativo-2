@@ -12,9 +12,7 @@ const useUser = () => {
 
   const postRequest = async (path, body) => {
     setIsSubmitting(true)
-
     const response = await apiService.post(path, body)
-
     setError(response.error)
     setData(response.data)
     setIsSubmitting(false)
