@@ -8,6 +8,26 @@
       "birthdate": "01/01/1990",
       "cpf": "999.999.999-99",
       "id": 2
+    },
+    {
+      "email": "thiago_claw@hotmail.com",
+      "password": "$2a$10$f6hCWQD8.M4Hp8w.STmI4unog7lpaYjzNwaaXTDyHtw5W8xLMZTzG",
+      "cpf": "05007832502",
+      "birthDate": "01021990",
+      "phone": 7199999999999,
+      "name": "thiago",
+      "repassword": "Gomesdias10",
+      "id": 3
+    },
+    {
+      "email": "prisicla.teste@test.com",
+      "password": "$2a$10$O0/K6Q5TMx0Nem4TjIsMAOqS.vmIcgMW3/CmyZq2HYpXiU61cqLdS",
+      "cpf": "12345678901",
+      "birthDate": "1990-10-25",
+      "phone": 7199999999999,
+      "name": "Priscila Amorim de Santana",
+      "repassword": "Gomesdias10",
+      "id": 4
     }
   ],
   "students": [
@@ -18,6 +38,38 @@
       "cpf": "999.999.999-99",
       "grade": 80,
       "id": 3
+    },
+    {
+      "cpf": "05007832502",
+      "birthDate": "1977-01-14",
+      "phone": 71999999999,
+      "grade": 10,
+      "name": "Silvana Penkal",
+      "id": 4
+    },
+    {
+      "cpf": "0121231231123",
+      "birthDate": "1990-10-25",
+      "phone": 7199999999999999,
+      "grade": 9,
+      "name": "Priscila Amorim de Santana",
+      "id": 5
+    },
+    {
+      "cpf": "0121231231123",
+      "birthDate": "1990-10-25",
+      "phone": 719999999,
+      "grade": 10,
+      "name": "Priscila Amorim de Santana",
+      "id": 6
+    },
+    {
+      "cpf": "0121231231123",
+      "birthDate": "1977-01-14",
+      "phone": 7199999999999,
+      "grade": 9,
+      "name": "Silvana Penkal2",
+      "id": 7
     }
   ],
   "accompaniments": [
