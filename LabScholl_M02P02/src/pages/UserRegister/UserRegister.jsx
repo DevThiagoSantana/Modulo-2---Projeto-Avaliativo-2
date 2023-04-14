@@ -14,7 +14,6 @@ import Button, { BUTTON_VARIANT } from '../../components/Button'
 import useUser from '../../hooks/useUser'
 
 import './UserRegister.css'
-import Navbar from '../../components/Navbar/Navbar'
 
 const schema = yup.object().shape({
   name: yup.string().required('Campo obrigatório'),
@@ -44,6 +43,7 @@ function UserRegister() {
     resolver: yupResolver(schema)
   })
 
+  // eslint-disable-next-line no-unused-vars
   const { isSubmitting, postRequest } = useUser()
 
   const onSubmit = (data) => {
@@ -77,6 +77,7 @@ function UserRegister() {
                   />
                   <InputGroup
                     labelText="Data de Nascimento:"
+                    type="date"
                     placeholder="Sua Data de Nascimento"
                     helperText={errors?.birthDate?.message}
                     {...register('birthDate')}

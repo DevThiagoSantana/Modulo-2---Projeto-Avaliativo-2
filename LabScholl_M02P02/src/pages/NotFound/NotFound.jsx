@@ -7,6 +7,7 @@ import {
 } from './styles'
 
 function NotFound() {
+  // eslint-disable-next-line no-unused-vars
   const theme = useTheme()
   return (
       <NotFoundContainer>

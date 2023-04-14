@@ -15,9 +15,7 @@ export const AuthenticationProvider = ({ children }) => {
   const { postRequest } = useUser()
 
   const login = async (email, password) => {
-    console.log(email, password)
     const data = await postRequest('/login', { email, password })
-    console.log(data)
     if (data) {
       setUser({ id: data.user.id, name: data.user.name })
       localStorage.setItem('token', data.accessToken)
@@ -25,7 +23,7 @@ export const AuthenticationProvider = ({ children }) => {
     }
   }
 
-  const logout = () =>{
+  const logout = () => {
     localStorage.removeItem('token')
     setUser(null)
     navigate('/login')

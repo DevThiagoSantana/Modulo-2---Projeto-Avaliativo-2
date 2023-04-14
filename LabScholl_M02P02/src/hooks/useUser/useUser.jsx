@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { apiService } from '../../services/api'
 
 const useUser = () => {
@@ -16,9 +15,12 @@ const useUser = () => {
     setError(response.error)
     setData(response.data)
     setIsSubmitting(false)
-
+    const auth = localStorage.getItem('token')
+    console.log(auth)
     if (response.error) {
       alert(response.error)
+    } else if (auth) {
+      navigate('/home')
     } else {
       navigate('/login')
     }

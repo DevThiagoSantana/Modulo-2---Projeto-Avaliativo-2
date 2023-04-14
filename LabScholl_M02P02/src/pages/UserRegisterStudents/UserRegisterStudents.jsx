@@ -12,14 +12,11 @@ import Card from '../../components/Card'
 import InputGroup from '../../components/InputGroup'
 import Button, { BUTTON_VARIANT } from '../../components/Button'
 import useUser from '../../hooks/useUser'
-
-import './UserRegister.css'
-import Navbar from '../../components/Navbar/Navbar'
+import './UserRegisterStudents.css'
 
 const schema = yup.object().shape({
   name: yup.string().required('Campo obrigatório'),
-  email: yup.string().required('Campo obrigatório'),
-  password: yup.string().required('Campo obrigatório'),
+  grade: yup.number().required('Campo obrigatório'),
   phone: yup.number().optional(),
   birthDate: yup.string().required('Campo obrigatório'),
   cpf: yup.string().required('Campo obrigatório')
@@ -35,8 +32,7 @@ function UserRegisterStudents() {
   } = useForm({
     defaultValues: {
       name: '',
-      email: '',
-      password: '',
+      grade: '',
       phone: '',
       birthDate: '',
       cpf: ''
@@ -44,10 +40,11 @@ function UserRegisterStudents() {
     resolver: yupResolver(schema)
   })
 
+  // eslint-disable-next-line no-unused-vars
   const { isSubmitting, postRequest } = useUser()
 
   const onSubmit = (data) => {
-    postRequest('/register', data)
+    postRequest('/students', data)
   }
 
   return (
@@ -65,47 +62,34 @@ function UserRegisterStudents() {
                 <div className="register-page-section-form-column">
                   <InputGroup
                     labelText="Nome:"
-                    placeholder="Seu nome"
+                    placeholder="Nome do Aluno"
                     helperText={errors?.name?.message}
                     {...register('name')}
                   />
                   <InputGroup
                     labelText="Telefone:"
-                    placeholder="Seu Telefone"
+                    placeholder="Telefone do Aluno"
                     helperText={errors?.phone?.message}
                     {...register('phone')}
                   />
                   <InputGroup
                     labelText="Data de Nascimento:"
-                    placeholder="Sua Data de Nascimento"
+                    type="date"
+                    placeholder="Data de Nascimento do Aluno"
                     helperText={errors?.birthDate?.message}
                     {...register('birthDate')}
                   />
                   <InputGroup
                     labelText="CPF:"
-                    placeholder="Seu CPF"
+                    placeholder="CPF do Aluno"
                     helperText={errors?.cpf?.message}
                     {...register('cpf')}
                   />
                   <InputGroup
-                    labelText="E-mail:"
-                    placeholder="Seu e-mail"
-                    helperText={errors?.email?.message}
-                    {...register('email')}
-                  />
-                  <InputGroup
-                    labelText="Senha:"
-                    placeholder="Sua senha"
-                    helperText={errors?.senha?.message}
-                    type="password"
-                    {...register('password')}
-                  />
-                  <InputGroup
-                    labelText="Confirme Senha:"
-                    placeholder="Sua senha"
-                    helperText={errors?.senha?.message}
-                    type="password"
-                    {...register('repassword')}
+                    labelText="Nota:"
+                    placeholder="Nota do Aluno"
+                    helperText={errors?.nota?.message}
+                    {...register('grade')}
                   />
                 </div>
               </div>
@@ -120,7 +104,7 @@ function UserRegisterStudents() {
                   <Button
                     type="button"
                     variant={BUTTON_VARIANT.PRIMARY_LINK}
-                    onClick={() => navigate('/login')}
+                    onClick={() => navigate('/home')}
                   >
                     Cancelar
                   </Button>

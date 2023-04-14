@@ -1,12 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import useUser from '../../hooks/useUser/useUser'
 import InputGroup from '../../components/InputGroup'
 import Button from '../../components/Button'
-import PageWrapper from '../../components/PageWrapper/PageWrapper'
 
-
-import { apiService } from '../../services/api'
 import {
   LoginCenterBox,
   LoginPageContainer,
@@ -17,8 +13,9 @@ import {
 import useAuthenticationContext from '../../hooks/UseAuthentication/useAuthentication'
 
 function Login() {
+  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate()
-  // const setUseUser = useUser()
+ 
 
   const [email, setEmail] = useState('')
   const [showEmailHelper, setShowEmailHelper] = useState(false)
@@ -50,17 +47,6 @@ function Login() {
     }
     setLoading(true)
     login(email, password)
-    // const response = await apiService.get(
-    //   `/users?email=${email}&password=${password}`
-    // )
-
-    // if (response?.data?.length) {
-    //   navigate('/home')
-    // } else {
-    //   setUseUser()
-    //   setError('Credenciais inválidas!')
-    // }
-
     setLoading(false)
   }
 
