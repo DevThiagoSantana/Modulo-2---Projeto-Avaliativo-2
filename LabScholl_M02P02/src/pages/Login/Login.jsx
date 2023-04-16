@@ -10,12 +10,11 @@ import {
   Title,
   SigninButton
 } from './styles.js'
-import useAuthenticationContext from '../../hooks/UseAuthentication/useAuthentication'
+import useAuthenticationContext from '../../hooks/UseAuthentication/UseAuthentication'
 
 function Login() {
   // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate()
- 
 
   const [email, setEmail] = useState('')
   const [showEmailHelper, setShowEmailHelper] = useState(false)

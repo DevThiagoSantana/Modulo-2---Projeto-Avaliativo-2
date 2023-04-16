@@ -1,6 +1,6 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Button, { BUTTON_VARIANT } from '../Button'
-import useAuthenticationContext from '../../hooks/UseAuthentication/useAuthentication'
+import useAuthenticationContext from '../../hooks/UseAuthentication/UseAuthentication'
 import './Navbar.css'
 import { useState } from 'react'
 
@@ -8,23 +8,34 @@ function Navbar() {
   const location = useLocation()
   // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false)
-  // const navigate = useNavigate()
-  const { logout } = useAuthenticationContext()
+  const { logout, user } = useAuthenticationContext()
+  const navigate = useNavigate
 
   const handleLogout = () => {
     setLoading(true)
     logout()
     setLoading(false)
   }
+  const handleStudents =() => {
+    navigate('/students')
+  }
 
   return (
     <>
     {location.pathname !== '/login' && location.pathname !== '/register' && (
       <header className="navbarContainer">
-        <Link to="/" className="navbarLogoBox">
+        <Link to="/home" className="navbarLogoBox">
           <img src="/logo.svg" alt="Logo" />
-          <h1>LabSchool</h1>
+          <h2>LabSchool</h2>
         </Link>
+        <p>Pedagogo:
+          <i></i>
+        </p>
+        <Button
+          type="button"
+          onClick={handleStudents}
+          > Aluno
+        </Button>
         <Button
             variant={BUTTON_VARIANT.PRIMARY_OUTLINED}
             onClick={handleLogout}

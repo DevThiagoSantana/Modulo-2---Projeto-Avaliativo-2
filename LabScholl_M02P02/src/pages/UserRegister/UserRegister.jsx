@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import {
-  RegisterPageContainer,
-  RegisterPageSection,
-  RegisterPageSectionCard
+  UserRegisterContainer,
+  UserRegisterSection,
+  UserRegisterSectionCard
 
 } from './styles'
 import Card from '../../components/Card'
@@ -19,8 +19,9 @@ const schema = yup.object().shape({
   name: yup.string().required('Campo obrigatório'),
   email: yup.string().required('Campo obrigatório'),
   password: yup.string().required('Campo obrigatório'),
+  repassword: yup.string().required('Campo obrigatorio').oneOf([yup.ref('password')], 'Passwords must match'),
   phone: yup.number().optional(),
-  birthDate: yup.string().required('Campo obrigatório'),
+  birthDate: yup.date().max(new Date(), 'Data invalida').required('Campo obrigatório'),
   cpf: yup.string().required('Campo obrigatório')
 })
 
@@ -51,10 +52,10 @@ function UserRegister() {
   }
 
   return (
-  <RegisterPageContainer>
-      <RegisterPageSection>
+  <UserRegisterContainer>
+      <UserRegisterSection>
         <Card>
-          <RegisterPageSectionCard>
+          <UserRegisterSectionCard>
             <h1 className="register-page-section-title">Cadastrar Pedagogico</h1>
 
             <form
@@ -128,10 +129,10 @@ function UserRegister() {
                 </div>
               </div>
             </form>
-          </RegisterPageSectionCard>
+          </UserRegisterSectionCard>
         </Card>
-      </RegisterPageSection>
-    </RegisterPageContainer>
+      </UserRegisterSection>
+    </UserRegisterContainer>
   )
 }
 

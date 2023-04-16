@@ -4,8 +4,8 @@ import { apiService } from '../../services/api'
 
 const useUser = () => {
   const navigate = useNavigate()
-
-  const [data, setData] = useState()
+  const [dataUser, setDataUser] = useState()
+  const [dataStudents, setDataStudent]= useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState(null)
 
@@ -13,7 +13,7 @@ const useUser = () => {
     setIsSubmitting(true)
     const response = await apiService.post(path, body)
     setError(response.error)
-    setData(response.data)
+    setDataUser(response.data)
     setIsSubmitting(false)
     const auth = localStorage.getItem('token')
     console.log(auth)
@@ -27,11 +27,34 @@ const useUser = () => {
     return response.data
   }
 
+  const getStudents = async (filter) => {
+    setIsSubmitting(true)
+    if (filter) {
+      const { data, error: err } = await apiService.get(`/students?name_like=${filter}`)
+      setError(err)
+      setDataStudent(data)
+      if (err) {
+        alert(error)
+      }
+      setIsSubmitting(false)
+    } else {
+      const { data, error: err } = await apiService.get(`/students`)
+      setError(err)
+      setDataStudent(data)
+      if (err) {
+        alert(error)
+      }
+      setIsSubmitting(false)
+    }
+  }
+
   return {
-    user: data,
+    user: dataUser,
+    students: dataStudents,
     isSubmitting,
     error,
-    postRequest
+    postRequest,
+    getStudents
   }
 }
 

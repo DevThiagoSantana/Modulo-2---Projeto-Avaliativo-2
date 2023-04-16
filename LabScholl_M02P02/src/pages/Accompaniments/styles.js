@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const UserRegisterContainer = styled.div`
+export const AccompanimentsContainer = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
@@ -11,12 +11,12 @@ export const UserRegisterContainer = styled.div`
   
 `
 
-export const UserRegisterSection = styled.section`
+export const AccompanimentsSection = styled.section`
   width: 828px;
   max-width: 100%;
 `
 
-export const UserRegisterSectionCard = styled.div`
+export const AccompanimentsSectionCard = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;

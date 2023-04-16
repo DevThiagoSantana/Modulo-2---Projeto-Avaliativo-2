@@ -3,26 +3,29 @@ import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import {
-  UserRegisterStudentsContainer,
-  UserRegisterStudentsSection,
-  UserRegisterStudentsSectionCard
+  AccompanimentsContainer,
+  AccompanimentsSection,
+  AccompanimentsSectionCard
 
 } from './styles'
 import Card from '../../components/Card'
 import InputGroup from '../../components/InputGroup'
 import Button, { BUTTON_VARIANT } from '../../components/Button'
 import useUser from '../../hooks/useUser'
-import './UserRegisterStudents.css'
+
+import './Accompaniments.css'
 
 const schema = yup.object().shape({
   name: yup.string().required('Campo obrigatório'),
-  grade: yup.number().required('Campo obrigatório'),
+  email: yup.string().required('Campo obrigatório'),
+  password: yup.string().required('Campo obrigatório'),
+  repassword: yup.string().required('Campo obrigatorio').oneOf([yup.ref('password')], 'Passwords must match'),
   phone: yup.number().optional(),
-  birthDate: yup.string().required('Campo obrigatório'),
+  birthDate: yup.date().max(new Date(), 'Data invalida').required('Campo obrigatório'),
   cpf: yup.string().required('Campo obrigatório')
 })
 
-function UserRegisterStudents() {
+function UserRegister() {
   const navigate = useNavigate()
 
   const {
@@ -31,8 +34,9 @@ function UserRegisterStudents() {
     formState: { errors }
   } = useForm({
     defaultValues: {
-      name: '',
-      grade: '',
+      studentName: '',
+      email: '',
+      password: '',
       phone: '',
       birthDate: '',
       cpf: ''
@@ -44,15 +48,15 @@ function UserRegisterStudents() {
   const { isSubmitting, postRequest } = useUser()
 
   const onSubmit = (data) => {
-    postRequest('/students', data)
+    postRequest('/register', data)
   }
 
   return (
-  <UserRegisterStudentsContainer>
-      <UserRegisterStudentsSection>
+  <AccompanimentsContainer>
+      <AccompanimentsSection>
         <Card>
-          <UserRegisterStudentsSectionCard>
-            <h1 className="register-page-section-title">Cadastrar Aluno</h1>
+          <AccompanimentsSectionCard>
+            <h1 className="register-page-section-title">Cadastrar Pedagogico</h1>
 
             <form
               className="register-page-section-form"
@@ -62,34 +66,48 @@ function UserRegisterStudents() {
                 <div className="register-page-section-form-column">
                   <InputGroup
                     labelText="Nome:"
-                    placeholder="Nome do Aluno"
+                    placeholder="Seu nome"
                     helperText={errors?.name?.message}
                     {...register('name')}
                   />
                   <InputGroup
                     labelText="Telefone:"
-                    placeholder="Telefone do Aluno"
+                    placeholder="Seu Telefone"
                     helperText={errors?.phone?.message}
                     {...register('phone')}
                   />
                   <InputGroup
                     labelText="Data de Nascimento:"
                     type="date"
-                    placeholder="Data de Nascimento do Aluno"
+                    placeholder="Sua Data de Nascimento"
                     helperText={errors?.birthDate?.message}
                     {...register('birthDate')}
                   />
                   <InputGroup
                     labelText="CPF:"
-                    placeholder="CPF do Aluno"
+                    placeholder="Seu CPF"
                     helperText={errors?.cpf?.message}
                     {...register('cpf')}
                   />
                   <InputGroup
-                    labelText="Nota:"
-                    placeholder="Nota do Aluno"
-                    helperText={errors?.nota?.message}
-                    {...register('grade')}
+                    labelText="E-mail:"
+                    placeholder="Seu e-mail"
+                    helperText={errors?.email?.message}
+                    {...register('email')}
+                  />
+                  <InputGroup
+                    labelText="Senha:"
+                    placeholder="Sua senha"
+                    helperText={errors?.senha?.message}
+                    type="password"
+                    {...register('password')}
+                  />
+                  <InputGroup
+                    labelText="Confirme Senha:"
+                    placeholder="Sua senha"
+                    helperText={errors?.senha?.message}
+                    type="password"
+                    {...register('repassword')}
                   />
                 </div>
               </div>
@@ -104,18 +122,18 @@ function UserRegisterStudents() {
                   <Button
                     type="button"
                     variant={BUTTON_VARIANT.PRIMARY_LINK}
-                    onClick={() => navigate('/home')}
+                    onClick={() => navigate('/login')}
                   >
                     Cancelar
                   </Button>
                 </div>
               </div>
             </form>
-          </UserRegisterStudentsSectionCard>
+          </AccompanimentsSectionCard>
         </Card>
-      </UserRegisterStudentsSection>
-    </UserRegisterStudentsContainer>
+      </AccompanimentsSection>
+    </AccompanimentsContainer>
   )
 }
 
-export default UserRegisterStudents
+export default UserRegister

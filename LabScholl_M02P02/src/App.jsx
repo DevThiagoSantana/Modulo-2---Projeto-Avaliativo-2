@@ -8,8 +8,10 @@ import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import UserRegister from './pages/UserRegister'
 import HomePage from './pages/HomePage'
+import AuthRoute from './components/AuthRoute'
 import UserRegisterStudents from './pages/UserRegisterStudents/UserRegisterStudents'
-import { AuthenticationProvider } from './hooks/UseAuthentication/useAuthentication'
+import { AuthenticationProvider } from './hooks/UseAuthentication/UseAuthentication'
+import ListStudents from './pages/listStudents/listStudents'
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -18,17 +20,18 @@ function App() {
   return (
       <ThemeProvider theme={mainTheme}>
         <BrowserRouter>
-         <AuthenticationProvider>
-          <Navbar/>
+          <AuthenticationProvider>
+            <Navbar/>
             <PageWrapper>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/students" element={<UserRegisterStudents />}/>
-                <Route path="*" element={<NotFound />} />
-                <Route path='/register' element={<UserRegister/>}/>
-                <Route path='/home' element={<HomePage/>}/>
-                <Route path="/" element={<Navigate to="/login" />} />
-              </Routes>
+                <Routes>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="*" element={<NotFound />} />
+                  <Route path='/register' element={<UserRegister/>}/>
+                  <Route path="/students/register" element={<AuthRoute><UserRegisterStudents/></AuthRoute>}/>
+                  <Route path="/students" element={<AuthRoute><ListStudents/></AuthRoute>}/>
+                  <Route path='/home' element={<AuthRoute><HomePage/></AuthRoute> }/>
+                  <Route path="/" element={<Navigate to="/login" />} />
+                </Routes>
             </PageWrapper>
           </AuthenticationProvider>
         </BrowserRouter>

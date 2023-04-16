@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { CardStyled } from './styles.js'
 
 function Card({ children }) {
-  return <CardStyled>{children}</CardStyled>
+  return <CardStyled>
+    {children}
+    </CardStyled>
 }
 
 Card.propTypes = {
