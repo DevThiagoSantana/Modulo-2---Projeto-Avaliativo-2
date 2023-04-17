@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { apiService } from '../../services/api'
 
 const useUser = () => {
   const navigate = useNavigate()
-  const [dataUser, setDataUser] = useState()
-  const [dataStudents, setDataStudent]= useState()
+  const [dataUser, setDataUser] = useState([])
+  const [dataStudents, setDataStudents] = useState([])
+  const [dataAccompaniments, setDataAccompaniments] = useState([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState(null)
 
@@ -16,7 +17,6 @@ const useUser = () => {
     setDataUser(response.data)
     setIsSubmitting(false)
     const auth = localStorage.getItem('token')
-    console.log(auth)
     if (response.error) {
       alert(response.error)
     } else if (auth) {
@@ -32,15 +32,67 @@ const useUser = () => {
     if (filter) {
       const { data, error: err } = await apiService.get(`/students?name_like=${filter}`)
       setError(err)
-      setDataStudent(data)
+      setDataStudents(data)
       if (err) {
         alert(error)
       }
       setIsSubmitting(false)
     } else {
-      const { data, error: err } = await apiService.get(`/students`)
+      const { data, error: err } = await apiService.get('/students')
       setError(err)
-      setDataStudent(data)
+      setDataStudents(data)
+      if (err) {
+        alert(error)
+      }
+      setIsSubmitting(false)
+    }
+  }
+  const getAccompaniments = async (filter) => {
+    setIsSubmitting(true)
+    if (filter) {
+      const { data, error: err } = await apiService.get(`/accompaniments?title_like=${filter}`)
+      setError(err)
+      setDataAccompaniments(data)
+      if (err) {
+        alert(error)
+      }
+      setIsSubmitting(false)
+    } else {
+      const { data, error: err } = await apiService.get('/accompaniments')
+      setError(err)
+      setDataAccompaniments(data)
+      if (err) {
+        alert(error)
+      }
+      setIsSubmitting(false)
+    }
+  }
+  const getFinishAccompaniments = async (filter) => {
+    setIsSubmitting(true)
+    if (filter) {
+      const { data, error: err } = await apiService.get(`accompaniments?finished=false&userId=${filter}&_expand=user&_expand=student`)
+      setError(err)
+      setDataAccompaniments(data)
+      if (err) {
+        alert(error)
+      }
+      setIsSubmitting(false)
+    }
+  }
+  const getUser = async (filter) => {
+    setIsSubmitting(true)
+    if (filter) {
+      const { data, error: err } = await apiService.get(`/user?name_like=${filter}`)
+      setError(err)
+      setDataUser(data)
+      if (err) {
+        alert(error)
+      }
+      setIsSubmitting(false)
+    } else {
+      const { data, error: err } = await apiService.get('/users')
+      setError(err)
+      setDataUser(data)
       if (err) {
         alert(error)
       }
@@ -49,12 +101,16 @@ const useUser = () => {
   }
 
   return {
-    user: dataUser,
-    students: dataStudents,
     isSubmitting,
     error,
     postRequest,
-    getStudents
+    getStudents,
+    getAccompaniments,
+    getFinishAccompaniments,
+    getUser,
+    user: dataUser,
+    students: dataStudents,
+    accompaniments: dataAccompaniments
   }
 }
 

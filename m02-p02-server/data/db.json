@@ -13,20 +13,18 @@
       "email": "thiago_claw@hotmail.com",
       "password": "$2a$10$f6hCWQD8.M4Hp8w.STmI4unog7lpaYjzNwaaXTDyHtw5W8xLMZTzG",
       "cpf": "05007832502",
-      "birthDate": "01021990",
+      "birthdate": "01/02/1990",
       "phone": 7199999999999,
       "name": "thiago",
-      "repassword": "Gomesdias10",
       "id": 3
     },
     {
       "email": "prisicla.teste@test.com",
       "password": "$2a$10$O0/K6Q5TMx0Nem4TjIsMAOqS.vmIcgMW3/CmyZq2HYpXiU61cqLdS",
       "cpf": "12345678901",
-      "birthDate": "1990-10-25",
+      "birthdate": "25/10/1990",
       "phone": 7199999999999,
       "name": "Priscila Amorim de Santana",
-      "repassword": "Gomesdias10",
       "id": 4
     }
   ],
@@ -41,7 +39,7 @@
     },
     {
       "cpf": "05007832502",
-      "birthDate": "1977-01-14",
+      "birthdate": "14/01/1977",
       "phone": 71999999999,
       "grade": 10,
       "name": "Silvana Penkal",
@@ -49,7 +47,7 @@
     },
     {
       "cpf": "0121231231123",
-      "birthDate": "1990-10-25",
+      "birthdate": "25/10/1990",
       "phone": 7199999999999999,
       "grade": 9,
       "name": "Priscila Amorim de Santana",
@@ -57,7 +55,7 @@
     },
     {
       "cpf": "0121231231123",
-      "birthDate": "1990-10-25",
+      "birthdate": "25/10/1990",
       "phone": 719999999,
       "grade": 10,
       "name": "Priscila Amorim de Santana",
@@ -65,7 +63,7 @@
     },
     {
       "cpf": "0121231231123",
-      "birthDate": "1977-01-14",
+      "birthdate": "14/01/1977",
       "phone": 7199999999999,
       "grade": 9,
       "name": "Silvana Penkal2",
@@ -81,6 +79,24 @@
       "title": "Acompanhamento teste",
       "description": "Descrição do acompanhamento",
       "finished": true
+    },
+    {
+      "finished": false,
+      "date": "16/04/2023",
+      "description": "Projetinho Complicado",
+      "title": "Teste",
+      "userId": 3,
+      "studentId": 3,
+      "id": 2
+    },
+    {
+      "finished": false,
+      "date": "2023-02-01T03:00:00.000Z",
+      "description": "Projetinho Complicado pacas!!!!!!!!!!!! aushaushuahs",
+      "title": "Teste",
+      "userId": 2,
+      "studentId": 3,
+      "id": 3
     }
   ]
 }

@@ -11,7 +11,10 @@ import HomePage from './pages/HomePage'
 import AuthRoute from './components/AuthRoute'
 import UserRegisterStudents from './pages/UserRegisterStudents/UserRegisterStudents'
 import { AuthenticationProvider } from './hooks/UseAuthentication/UseAuthentication'
-import ListStudents from './pages/listStudents/listStudents'
+import ListStudents from './pages/ListStudents/ListStudents'
+import Accompaniments from './pages/Accompaniments/Accompaniments'
+import RegisterAccompaniments from './pages/RegisterAccompaniments/RegisterAccompaniments'
+import EditAccompaniments from './pages/EditAccompaniments/EditAccompaniments'
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -30,6 +33,9 @@ function App() {
                   <Route path="/students/register" element={<AuthRoute><UserRegisterStudents/></AuthRoute>}/>
                   <Route path="/students" element={<AuthRoute><ListStudents/></AuthRoute>}/>
                   <Route path='/home' element={<AuthRoute><HomePage/></AuthRoute> }/>
+                  <Route path='/accompaniments' element={<AuthRoute><Accompaniments/></AuthRoute> }/>
+                  <Route path='/accompaniments/register' element={<AuthRoute><RegisterAccompaniments/></AuthRoute> }/>
+                  <Route path='/accompaniments/edit/:id' element={<AuthRoute><EditAccompaniments/></AuthRoute>}/>
                   <Route path="/" element={<Navigate to="/login" />} />
                 </Routes>
             </PageWrapper>

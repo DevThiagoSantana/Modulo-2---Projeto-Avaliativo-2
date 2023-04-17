@@ -6,7 +6,7 @@
   justify-content: space-between;  
   align-items: center;
   background-color: gray;
-
+  flex-wrap: wrap;
 }
 
 .navbarContainer h1 {
@@ -19,4 +19,14 @@
   height: 40px;
   gap: var(--spacing-4);
   text-decoration: none;
+}
+.Botoes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.namePedagogo{
+  font-size: 36px;  
+  line-height: 44px;
+  color: var(--primary);
 }

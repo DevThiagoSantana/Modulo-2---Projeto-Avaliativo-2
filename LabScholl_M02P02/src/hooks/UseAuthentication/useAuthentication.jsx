@@ -19,12 +19,14 @@ export const AuthenticationProvider = ({ children }) => {
     if (data) {
       setUser({ id: data.user.id, name: data.user.name })
       localStorage.setItem('token', data.accessToken)
+      localStorage.setItem('pedagogo', data.user.name)
       navigate('/home')
     }
   }
 
   const logout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('pedagogo')
     setUser(null)
     navigate('/login')
   }

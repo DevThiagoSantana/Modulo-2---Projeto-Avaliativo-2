@@ -1,139 +1,53 @@
-import { useForm } from 'react-hook-form'
+import { Spinner } from 'phosphor-react'
 import { useNavigate } from 'react-router-dom'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import {
-  AccompanimentsContainer,
-  AccompanimentsSection,
-  AccompanimentsSectionCard
-
-} from './styles'
-import Card from '../../components/Card'
-import InputGroup from '../../components/InputGroup'
 import Button, { BUTTON_VARIANT } from '../../components/Button'
-import useUser from '../../hooks/useUser'
+import {
+  ListHeader,
+  AccompanimentsContainer
+} from './styles'
+import AccompanimentsFilter from '../../components/AccompanimentsFilter/AccompanimentsFilter'
+import useUser from '../../hooks/useUser/useUser'
 
 import './Accompaniments.css'
+import AccompanimentsList from '../../components/AcccompanimentsList/AccompanimentsList'
+import { useEffect } from 'react'
 
-const schema = yup.object().shape({
-  name: yup.string().required('Campo obrigatório'),
-  email: yup.string().required('Campo obrigatório'),
-  password: yup.string().required('Campo obrigatório'),
-  repassword: yup.string().required('Campo obrigatorio').oneOf([yup.ref('password')], 'Passwords must match'),
-  phone: yup.number().optional(),
-  birthDate: yup.date().max(new Date(), 'Data invalida').required('Campo obrigatório'),
-  cpf: yup.string().required('Campo obrigatório')
-})
-
-function UserRegister() {
+function Accompaniments() {
   const navigate = useNavigate()
+  const { accompaniments, error, isLoading, getAccompaniments } = useUser()
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    defaultValues: {
-      studentName: '',
-      email: '',
-      password: '',
-      phone: '',
-      birthDate: '',
-      cpf: ''
-    },
-    resolver: yupResolver(schema)
-  })
-
-  // eslint-disable-next-line no-unused-vars
-  const { isSubmitting, postRequest } = useUser()
-
-  const onSubmit = (data) => {
-    postRequest('/register', data)
-  }
+  useEffect(() => {
+    getAccompaniments()
+  }, [])
 
   return (
-  <AccompanimentsContainer>
-      <AccompanimentsSection>
-        <Card>
-          <AccompanimentsSectionCard>
-            <h1 className="register-page-section-title">Cadastrar Pedagogico</h1>
+    <AccompanimentsContainer>
+      <ListHeader>
+        <AccompanimentsFilter onFilter={getAccompaniments} />
+          <Button
+            variant={BUTTON_VARIANT.SECONDARY}
+            onClick={() => navigate('/accompaniments/register')}
+          >
+            Cadastrar Atendimento
+          </Button>
+      </ListHeader>
 
-            <form
-              className="register-page-section-form"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className="register-page-section-form-row">
-                <div className="register-page-section-form-column">
-                  <InputGroup
-                    labelText="Nome:"
-                    placeholder="Seu nome"
-                    helperText={errors?.name?.message}
-                    {...register('name')}
-                  />
-                  <InputGroup
-                    labelText="Telefone:"
-                    placeholder="Seu Telefone"
-                    helperText={errors?.phone?.message}
-                    {...register('phone')}
-                  />
-                  <InputGroup
-                    labelText="Data de Nascimento:"
-                    type="date"
-                    placeholder="Sua Data de Nascimento"
-                    helperText={errors?.birthDate?.message}
-                    {...register('birthDate')}
-                  />
-                  <InputGroup
-                    labelText="CPF:"
-                    placeholder="Seu CPF"
-                    helperText={errors?.cpf?.message}
-                    {...register('cpf')}
-                  />
-                  <InputGroup
-                    labelText="E-mail:"
-                    placeholder="Seu e-mail"
-                    helperText={errors?.email?.message}
-                    {...register('email')}
-                  />
-                  <InputGroup
-                    labelText="Senha:"
-                    placeholder="Sua senha"
-                    helperText={errors?.senha?.message}
-                    type="password"
-                    {...register('password')}
-                  />
-                  <InputGroup
-                    labelText="Confirme Senha:"
-                    placeholder="Sua senha"
-                    helperText={errors?.senha?.message}
-                    type="password"
-                    {...register('repassword')}
-                  />
-                </div>
-              </div>
+      {isLoading && <Spinner width={100} />}
 
-              <div className="register-page-section-form-footer">
-                <div>
-                  <Button type="submit" >
-                    Cadastrar
-                  </Button>
-                </div>
-                <div>
-                  <Button
-                    type="button"
-                    variant={BUTTON_VARIANT.PRIMARY_LINK}
-                    onClick={() => navigate('/login')}
-                  >
-                    Cancelar
-                  </Button>
-                </div>
-              </div>
-            </form>
-          </AccompanimentsSectionCard>
-        </Card>
-      </AccompanimentsSection>
+      {!isLoading && !!error && <p>{error}</p>}
+        {console.log(accompaniments)}
+      {!isLoading && !error && !!accompaniments.length && (
+        <AccompanimentsList list={accompaniments} />
+      )}
+
+      {!isLoading && !error && !accompaniments.length && (
+        <img
+          height={500}
+          alt="Imagem de nenhum item encontrado"
+        />
+      )}
     </AccompanimentsContainer>
   )
 }
 
-export default UserRegister
+export default Accompaniments
