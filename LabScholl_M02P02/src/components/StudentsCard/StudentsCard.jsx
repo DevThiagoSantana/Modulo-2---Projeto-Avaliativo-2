@@ -36,13 +36,6 @@ function StudentsCard({ id, name, phone, birthdate, cpf, grade }) {
         <strong>Nota</strong> <span>{grade}</span>
       </p>
 
-      <Button
-        variant={BUTTON_VARIANT.SECONDARY_OUTLINED}
-        onClick={handleNavigateDetails}
-      >
-       Editar
-      </Button>
-
     </StudentsCardContainer>
   )
 }

@@ -50,6 +50,7 @@ function RegisterAccompaniments() {
   
 
   const onSubmit = (data) => {
+    console.log(data)
     postRequest('/accompaniments', data)
   }
 
@@ -76,10 +77,7 @@ function RegisterAccompaniments() {
                   <SelectGroup
                     name="alunos"
                     lista={students}
-                  />
-                  <InputGroup
-                  placeholder="ID do Aluno"
-                  helperText={errors?.studentId?.message}
+                    helperText={errors?.studentId?.message}
                     {...register('studentId')}
                   />
                   </ul>
@@ -87,9 +85,6 @@ function RegisterAccompaniments() {
                   <SelectGroup
                     name="pedagogo"
                     lista={user}
-                  />
-                  <InputGroup
-                    placeholder="Data de Atendimento"
                     helperText={errors?.userId?.message}
                     {...register('userId')}
                   />

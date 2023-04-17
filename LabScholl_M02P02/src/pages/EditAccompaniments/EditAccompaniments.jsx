@@ -27,7 +27,7 @@ const schema = yup.object().shape({
 function EditAccompaniments() {
   const navigate = useNavigate()
   const { id } = useParams()
-  const { accompaniments, user, students, getAccompaniments, getStudents, getUser } = useUser()
+  const { accompaniments, user, students, getAccompaniments, getStudents, getUser, postRequest } = useUser()
   console.log(accompaniments)
 
   useEffect(() => {
@@ -60,6 +60,7 @@ function EditAccompaniments() {
   })
 
   const onSubmit = (data) => {
+    console.log(data)
     postRequest('/accompaniments', data)
   }
 
